@@ -16,11 +16,11 @@ class TestSecretaryAssistant(unittest.TestCase):
         self.directories = json_load(directories_path)
         self.documents = json_load(documents_path)
 
-    def test_documents(self):
-        self.assertTrue((type(self.documents) == list), 'Check loaded documents data')
-
-    def test_directories(self):
-        self.assertTrue((type(self.directories) == dict), 'Check loaded directories data')
+    # def test_documents(self):
+    #     self.assertTrue((type(self.documents) == list), 'Check loaded documents data')
+    #
+    # def test_directories(self):
+    #     self.assertTrue((type(self.directories) == dict), 'Check loaded directories data')
 
     def test_check_document_existence_success(self):
         self.assertTrue(check_document_existance('11-2'))
@@ -32,8 +32,7 @@ class TestSecretaryAssistant(unittest.TestCase):
     def test_append_doc_to_shelf(self):
         doc_number = '3'
         shelf_number = '1'
-        append_doc_to_shelf(doc_number, shelf_number)
-        self.assertGreater(doc_number, shelf_number)
+        self.assertNotEqual(append_doc_to_shelf(doc_number, shelf_number), self.directories['1'])
 
 
 if __name__ == '__main__':
