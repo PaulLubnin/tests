@@ -30,7 +30,9 @@ class TestSecretaryAssistant(unittest.TestCase):
 
     def test_get_all_doc_owners_names(self):
         self.assertIsInstance(get_all_doc_owners_names(), set)
-        self.assertEqual(len(get_all_doc_owners_names()), len(documents))
+        working_function = len(get_all_doc_owners_names())
+        used_document = len(documents)
+        self.assertEqual(working_function, used_document)
 
     def test_append_doc_to_shelf(self):
         before_append = len(directories[self.test_shelf])
