@@ -10,11 +10,14 @@ from ADPY4.tests.app import check_document_existance, get_all_doc_owners_names, 
 #         return json.load(file)
 
 class TestSecretaryAssistant(unittest.TestCase):
-    # def setUp(self) -> None:
-    #     directories_path = os.path.join('fixtures', 'directories.json')
-    #     documents_path = os.path.join('fixtures', 'documents.json')
-    #     self.directories = json_load(directories_path)
-    #     self.documents = json_load(documents_path)
+    def setUp(self) -> None:
+        # directories_path = os.path.join('fixtures', 'directories.json')
+        # documents_path = os.path.join('fixtures', 'documents.json')
+        # self.directories = json_load(directories_path)
+        # self.documents = json_load(documents_path)
+        self.test_doc = '11-2'
+        self.test_shelf = '1'
+        self.test_add_new_doc = '3'
 
     # def test_documents(self):
     #     self.assertTrue((type(self.documents) == list), 'Check loaded documents data')
@@ -23,26 +26,22 @@ class TestSecretaryAssistant(unittest.TestCase):
     #     self.assertTrue((type(self.directories) == dict), 'Check loaded directories data')
 
     def test_check_document_existence_success(self):
-        self.assertTrue(check_document_existance('11-2'))
+        self.assertTrue(check_document_existance(self.test_doc))
 
     def test_get_all_doc_owners_names(self):
         self.assertIsInstance(get_all_doc_owners_names(), set)
         self.assertEqual(len(get_all_doc_owners_names()), len(documents))
 
     def test_append_doc_to_shelf(self):
-        shelf_number = '1'
-        before_append = len(directories[shelf_number])
-        new_doc_number = '3'
-        append_doc_to_shelf(new_doc_number, shelf_number)
-        after_append = len(directories[shelf_number])
+        before_append = len(directories[self.test_shelf])
+        append_doc_to_shelf(self.test_add_new_doc, self.test_shelf)
+        after_append = len(directories[self.test_shelf])
         self.assertGreater(after_append, before_append)
 
     def test_remove_doc_from_shelf(self):
-        shelf_number = '1'
-        before_del = len(directories[shelf_number])
-        remove_doc = '11-2'
-        remove_doc_from_shelf(remove_doc)
-        after_del = len(directories[shelf_number])
+        before_del = len(directories[self.test_shelf])
+        remove_doc_from_shelf(self.test_doc)
+        after_del = len(directories[self.test_shelf])
         self.assertGreater(before_del, after_del)
 
 
